@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <!-- link to css file -->
+
+  <title>My List</title>
+</head>
+
+<body>
+  <!-- main content -->
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-6">
+        <form method="post" id="form-add-item" class="form-inline">
+          <div class="form-group">
+            <input type="text" id="input-item-name" class="form-control" placeholder="Input new list">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-6">
+        <ul class="lists" id="lists-active">
+          <li class="list-item">Item 1</li>
+          <li class="list-item">Item 2</li>
+        </ul>
+      </div>
+      <div class="col col-md-6">
+        <ul class="lists" id="lists-nonactive">
+          <li class="list-item">Item 3</li>
+          <li class="list-item">Item 4</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main content / end -->
+
+  <!-- script & library javascript -->
+  <script src="app.js"></script>
+</body>
+
+</html>
