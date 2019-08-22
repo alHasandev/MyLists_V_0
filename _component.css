@@ -1,0 +1,343 @@
+/* form style */
+form {
+  padding: 25px 15px;
+}
+
+.form-sm {
+  max-width: 400px;
+}
+
+.form-md {
+  max-width: 600px;
+}
+
+.form-inline {
+  padding: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-group label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-group .form-control {
+  border: 1px solid #ccc;
+  color: #555;
+  outline: none;
+  padding: 6px 12px;
+  width: 100%;
+}
+
+.form-group .form-control:hover,
+.form-group .form-control:focus {
+  border: 1px solid #007BFF;
+}
+
+.btn {
+  border: 2px solid #DDDDDD;
+  padding: 5px 12px;
+  background-color: #DDDDDD;
+}
+
+.btn:hover {
+  cursor: pointer;
+  border-color: #CCCCCC;
+  background-color: #CCCCCC;
+}
+
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.input-file+label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  border: 2px solid #DEE4E7;
+  padding: 5px 12px;
+  background-color: #DEE4E7;
+  display: inline-block;
+}
+
+.input-file:focus+label,
+.input-file+label:hover {
+  cursor: pointer;
+  border-color: #CCCCCC;
+  background-color: #CCCCCC;
+}
+
+.input-file:focus+label {
+  outline: 1px dotted #333;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+/* form style / end */
+
+/* text && heading */
+.title {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+hr {
+  border: 1px solid #CCCCCC;
+  margin-bottom: 15px;
+}
+
+/* text && heading / end */
+
+/* group style */
+
+.lists .list-item {
+  border: solid #DDDDDD;
+  border-width: 0 1px 1px 1px;
+  padding: 12px;
+}
+
+.lists .list-item:first-child {
+  border: 1px solid #DDDDDD;
+}
+
+.lists.rounded .list-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.lists.rounded .list-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* group style / end */
+
+/* select / check / radio */
+/* checklist group */
+/* -- customize the label */
+.checklist {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* -- hide browser default checkbox */
+.checklist input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  transform: translate(-5px, -5px);
+  z-index: 3;
+}
+
+/* -- custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  transform: translate(-5px, -5px);
+  background-color: #eee;
+  /* -- display: none; */
+}
+
+/* -- checklist on hover */
+.checklist:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+.checklist input:checked~label {
+  color: #ABB1B4;
+}
+
+/* -- checklist when checked */
+.checklist input:checked~.checkmark {
+  background-color: #2196F3;
+}
+
+/* -- create checkmark/indeicator */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* -- show checkmark when checked */
+.checklist input:checked~.checkmark::after {
+  display: block;
+}
+
+/* -- set style for checkmark/indicator */
+.checklist .checkmark::after {
+  top: 5px;
+  left: 9px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* checklist group / end */
+/* select / check / radio / end */
+
+/* modal / popup container */
+.modal {
+  width: 100%;
+  padding: 20px 15px;
+  max-width: 850px;
+  background-color: #DEE4E7;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  position: absolute;
+  margin: 10px 0;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  z-index: 10;
+}
+
+.modal .modal-title {
+  border-bottom: 3px solid #CCCCCC;
+  margin-bottom: 15px;
+}
+
+.modal .modal-footer {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
+  grid-template-rows: 1fr;
+  border-top: 3px solid #CCCCCC;
+  margin-top: 15px;
+  padding: 10px 0;
+}
+
+.modal .modal-footer .footer-left {
+  grid-column: 1 / span 1;
+  justify-self: start;
+}
+
+.modal .modal-footer .footer-center {
+  grid-column: 2 / span 2;
+  justify-self: center;
+}
+
+.modal .modal-footer .footer-right {
+  grid-column: 4 / span 1;
+  justify-self: end;
+}
+
+/* modal / popup container / end */
+
+/* utilities style */
+.rounded {
+  border-radius: 4px;
+}
+
+.border {
+  border: 1px solid;
+  border-color: #CCCCCC;
+}
+
+.border-white {
+  border-color: #FFFFFF;
+}
+
+.border-light {
+  border-color: #DEE4E7;
+}
+
+.border-dark {
+  border-color: #37474F;
+}
+
+.border-black {
+  border-color: #333333;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-white {
+  background-color: #FFFFFF;
+  color: #37474F;
+}
+
+.bg-light {
+  background-color: #DEE4E7;
+  color: #37474F;
+}
+
+.bg-dark {
+  background-color: #37474F;
+  color: #DEE4E7;
+}
+
+.bg-black {
+  background-color: #333333;
+  color: #DEE4E7;
+}
+
+.hover:hover {
+  border-color: #CCCCCC;
+  background-color: #CCCCCC;
+}
+
+.hover-transparent:hover {
+  /* border-color: transparent; */
+  background-color: transparent;
+  color: #333;
+}
+
+.hover-light:hover {
+  border-color: #DEE4E7;
+  background-color: #DEE4E7;
+  color: #37474F;
+}
+
+.hover-dark:hover {
+  border-color: #37474F;
+  background-color: #37474F;
+  color: #DEE4E7;
+}
+
+.hover-danger:hover {
+  cursor: pointer;
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.d-none {
+  display: none;
+}
+
+/* utilities style / end */

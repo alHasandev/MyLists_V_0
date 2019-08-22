@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="_reset.css">
+  <link rel="stylesheet" href="_layout.css">
+  <link rel="stylesheet" href="_component.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- link to css file -->
+
+  <title>Register User</title>
+</head>
+
+<body>
+  <!-- main content -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form method="post" class="form-md mx-auto border border-light" id="form-register">
+          <h2 class="title">complete your profile</h2>
+          <hr>
+          <div class="row">
+            <div class="col col-md-3 img-box">
+              <div class="user-img" id="user-image">
+                <img src="./assets/images/User_Avatars/user-grey.png" alt="">
+              </div>
+            </div>
+            <div class="col col-md-9">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" name="name" id="name">
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <input type="submit" class="btn col col-end" value="Save">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- main content / end -->
+
+  <!-- modal / avatar list -->
+  <div class="modal" id="avatar-list">
+    <div class="modal-title">
+      <h3 class="title">Choose your avatars</h3>
+    </div>
+    <div class="modal-body">
+      <div class="grid">
+        <div class="grid-item border border-dark rounded">
+          <img src="./assets/images/User_Avatars/avatar-man-1.png" alt="">
+        </div>
+        <div class="grid-item border border-dark rounded">
+          <img src="./assets/images/User_Avatars/avatar-man-2.png" alt="">
+        </div>
+        <div class="grid-item border border-dark rounded">
+          <img src="./assets/images/User_Avatars/avatar-man-3.png" alt="">
+        </div>
+        <div class="grid-item border border-dark rounded">
+          <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="">
+        </div>
+        <div class="grid-item border border-dark rounded" id="new-image">
+          <div class="image-collapse">
+            <img id="image-test" alt="">
+          </div>
+          <!-- this will filled with javascript -->
+        </div>
+        <div class="grid-item">
+          <div class="files">
+            <input type="file" class="input-file" id="add-image" capture>
+            <label for="add-image" class="file-box rounded">Add new images</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="footer-left">Left</div>
+      <div class="footer-center">Center</div>
+      <div class="footer-right">
+        <a class="btn" href="index.html">Batal</a>
+        <button class="btn" id="preview-image">Preview Image</button>
+      </div>
+    </div>
+  </div>
+  <!-- modal / user images list / end -->
+
+  <!-- script & library javascript -->
+  <script src="app.js"></script>
+  <script src="profile.js"></script>
+</body>
+
+</html>

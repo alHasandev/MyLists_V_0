@@ -22,4 +22,8 @@ table {
   border-collapse: collapse;
 }
 
+img {
+  width: 100%;
+}
+
 /* reset style / end */

@@ -1,103 +1,112 @@
-/* form style */
-.form-inline {
-  display: flex;
-  /* width: 100%; */
+/* custom style */
+
+/* -- list item */
+.list-item {
+  position: relative;
 }
 
-.form-group {
-  margin: 10px 0;
-  width: 100%;
+.grid {
+  grid-gap: 5px;
 }
 
-.form-control {
-  border: 1px solid #ccc;
-  color: #555;
-  outline: none;
-  padding: 6px 12px;
-  width: 100%;
+.grid-item {
+  border-width: 2px;
 }
 
-.form-control:hover,
-.form-control:focus {
-  border: 1px solid #007BFF;
-}
-
-.btn {
-  border: 1px solid #DDDDDD;
-  padding: 6px 12px;
-  background-color: #DDDDDD;
-}
-
-.btn:hover {
-  cursor: pointer;
+.grid-item:hover {
   background-color: #CCCCCC;
 }
 
-/* form style / end */
+/* -- list item / end */
 
-/* group style */
-.lists {
+/* -- User Image Style */
+.img-box {
+  position: relative;
+}
+
+.user-img::after {
+  content: "change";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-weight: 700;
+  /* display: block; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: #CCCCCC;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.user-img {
+  cursor: pointer;
+}
+
+.img-box:hover .user-img::after {
+  opacity: 0.5;
+}
+
+#new-image {
+  position: relative;
+  width: 100%;
+}
+
+#new-image:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.image-collapse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   overflow: hidden;
-  border: 1px solid #DDDDDD;
 }
 
-.lists .list-item {
-  border-bottom: 1px solid #DDDDDD;
-  padding: 12px;
+/* -- User Image Style / end */
+
+/* -- File Input Button */
+.files {
+  width: 100%;
+  height: 100%;
 }
 
-.lists .list-item:last-child {
-  border-bottom: none;
+.files .file-box {
+  min-height: 200px;
+  min-width: 200px;
+  height: 100%;
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #37474F;
 }
 
-/* group style / end */
-
-/* auto style */
-.rounded {
-  border-radius: 4px;
+.files .file-box:hover {
+  border: 2px solid #37474F;
 }
 
-.border-white {
-  border: 1px solid #FFFFFF;
+/* -- File Input Button / end */
+
+/* -- Symbol / Icon / Html Unicode / Entity */
+.symbol-right {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate(0, -50%);
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.border-light {
-  border: 1px solid #DEE4E7;
-}
-
-.border-dark {
-  border: 1px solid #37474F;
-}
-
-.border-black {
-  border: 1px solid #333333;
-}
-
-.bg-white {
-  background-color: #FFFFFF;
-}
-
-.bg-light {
-  background-color: #DEE4E7;
-}
-
-.bg-dark {
-  background-color: #37474F;
-}
-
-.bg-black {
-  background-color: #333333;
-}
-
-.d-none {
-  display: none;
-}
-
-/* auto style / end */
-
-/* custom style */
-.checked {
-  color: #777;
-}
+/* -- Symbol / Icon / Html Unicode / Entity / end */
 
 /* custom style / end */
