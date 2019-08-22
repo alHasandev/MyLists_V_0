@@ -24,14 +24,14 @@
           <hr>
           <div class="row">
             <div class="col col-md-3 img-box">
-              <div class="user-img" id="user-image">
-                <img src="./assets/images/User_Avatars/user-grey.png" alt="">
+              <div class="user-img" id="user-image" onclick="showModal('avatar-list')">
+                <img src="./assets/images/User_Avatars/user-grey.png" alt="" id="avatar">
               </div>
             </div>
             <div class="col col-md-9">
               <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" class="form-control" name="name" id="name">
+                <input type="text" class="form-control" name="name" id="fullname">
               </div>
               <div class="form-group">
                 <label for="username">Username</label>
@@ -56,16 +56,16 @@
     <div class="modal-body">
       <div class="grid">
         <div class="grid-item border border-dark rounded">
-          <img src="./assets/images/User_Avatars/avatar-man-1.png" alt="">
+          <img src="./assets/images/User_Avatars/avatar-man-1.png" alt="" class="avatar">
         </div>
         <div class="grid-item border border-dark rounded">
-          <img src="./assets/images/User_Avatars/avatar-man-2.png" alt="">
+          <img src="./assets/images/User_Avatars/avatar-man-2.png" alt="" class="avatar">
         </div>
         <div class="grid-item border border-dark rounded">
-          <img src="./assets/images/User_Avatars/avatar-man-3.png" alt="">
+          <img src="./assets/images/User_Avatars/avatar-man-3.png" alt="" class="avatar">
         </div>
         <div class="grid-item border border-dark rounded">
-          <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="">
+          <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="" class="avatar">
         </div>
         <div class="grid-item border border-dark rounded" id="new-image">
           <div class="image-collapse">
@@ -85,8 +85,7 @@
       <div class="footer-left">Left</div>
       <div class="footer-center">Center</div>
       <div class="footer-right">
-        <a class="btn" href="index.html">Batal</a>
-        <button class="btn" id="preview-image">Preview Image</button>
+        <button class="btn" onclick="closeModal('avatar-list')">Cancel</button>
       </div>
     </div>
   </div>

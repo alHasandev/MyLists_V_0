@@ -2,10 +2,18 @@
 let db;
 let dbVersion = 1;
 let dbReady = false;
+let imageName = getLocal('imageName', 'user-grey.png');
+let fullName = getLocal('fullName', 'Your Name');
+let userName = getLocal('userName', '@your_name');
 
 //  wait until dom loaded 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM Content Loaded');
+
+  // load User data
+  loadUserImage(imageName);
+  loadUserData('#fullname', fullName);
+  loadUserData('#username', '@' + userName);
 
   // prepare Html Dom References
   const addImage = document.getElementById('add-image');
@@ -24,9 +32,40 @@ document.addEventListener('DOMContentLoaded', () => {
     previewImage.addEventListener('click', doImageTest);
   });
 
-
-
   initDB();
+
+  // listen to event
+  // event: submit / form profile
+  listenEvent('submit', '#form-profile', (event) => {
+    // redirect to page: edit profile
+    window.location.href = 'register.html';
+  });
+
+  // event: click / choose avatar image
+  listenEvent('click', '.avatar', (event) => {
+    // console.log(event.target);
+    // get image name
+    let imageName = getFileName(event.target.src);
+    loadUserImage(imageName);
+    closeModal('avatar-list');
+  });
+
+  listenEvent('submit', '#form-register', (event) => {
+    // get form data and image name
+    let fullName = document.getElementById('fullname').value;
+    let userName = document.getElementById('username').value;
+    let imageName = getFileName(document.getElementById('avatar').src);
+
+    // store data to local storage
+    storeLocal({
+      fullName: fullName,
+      userName: userName,
+      imageName: imageName
+    });
+
+    // redirect to page profile
+    window.location.href = 'profile.html';
+  });
 });
 
 function initDB() {
@@ -98,7 +137,7 @@ function uploadImage(e, callback) {
   }
 }
 
-// test displaying images
+// function / test displaying images
 function doImageTest() {
   console.log('Do image test');
   const image = document.getElementById('image-test');
@@ -117,4 +156,64 @@ function doImageTest() {
     image.src = 'data:image/jpeg;base64,' + btoa(record.data);
 
   }
+}
+
+// function / get just name file from absolute path file
+function getFileName(path) {
+  let fileName = path.split('/');
+  return fileName[fileName.length - 1];
+}
+
+// function / get Image Name from Local Storage
+function getLocal(item, defaultName) {
+  return (localStorage.getItem(item) !== null) ? localStorage.getItem(item) : defaultName;
+}
+
+// function / load User Image
+function loadUserImage(imageName) {
+  const path = './assets/images/User_Avatars/';
+  document.getElementById('avatar').src = path + imageName;
+  console.log('user image changed');
+}
+
+// function / load user Data
+function loadUserData(selector, value) {
+  document.querySelector(selector).innerHTML = value;
+}
+
+// function / save profile to local storage
+function storeLocal(obj) {
+
+  Object.keys(obj).forEach((key) => {
+    console.log(`Set ${key} = ${obj[key]}`);
+    localStorage.setItem(key, obj[key]);
+  });
+  // localStorage.setItem('fullname', fullName);
+  // localStorage.setItem('username', userName);
+  // localStorage.setItem('image', imageName);
+  console.log('Data stored');
+}
+
+// function / show modal
+function showModal(modalId, display = 'block') {
+  document.getElementById(modalId).style.display = display;
+}
+
+// function / close modal
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+// function / listen to event click
+function listenEvent(event, selector, callback) {
+  document.addEventListener(event, (ev) => {
+    // only listen to event triggered by selector
+    if (ev.target.matches(selector)) {
+      // prevent default behaviour
+      ev.preventDefault();
+
+      // call back function
+      callback(ev);
+    }
+  })
 }

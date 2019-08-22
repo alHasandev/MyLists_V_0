@@ -90,6 +90,12 @@ form {
   margin: 10px 0;
 }
 
+.sub-title {
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 hr {
   border: 1px solid #CCCCCC;
   margin-bottom: 15px;

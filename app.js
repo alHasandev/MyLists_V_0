@@ -4,45 +4,24 @@ const listsNonActive = document.getElementById('lists-nonactive');
 const formAddItem = document.getElementById('form-add-item');
 const inputItemName = document.getElementById('input-item-name');
 
-// prepare dummy data
-let listItems = [{
-    text: 'Item 1',
-    checked: false,
-    id: 1111111,
-  },
-  {
-    text: 'Item 2',
-    checked: false,
-    id: 1112222,
-  },
-  {
-    text: 'Item 3',
-    checked: true,
-    id: 1112223,
-  },
-  {
-    text: 'Item 4',
-    checked: true,
-    id: 1112244,
-  }
-];
-
 // function
 // push new item to list item array and render list item
 const addItem = function (text) {
   const item = {
     text,
-    checked: false,
-    id: Date.now(),
+    checked: false
   };
 
-  listItems.push(item);
-  listsActive.innerHTML = renderLists(listItems);
+  // listItems.push(item);
+  setObjectStore('myLists', item);
+  loadObjectStore('myLists', () => {
+    listsActive.innerHTML = renderLists(storedData);
+  });
 }
 
 // return dom string of new item
 const listItem = function (item) {
-  let html = `<li class="list-item" data-key="${item.id}">`;
+  let html = `<li class="list-item" data-key="${item.id}" data-text="${item.text}">`;
   html += `<div class="checklist">`;
   html += `<input type="checkbox" ${item.checked ? 'checked' : null}>`;
   html += '<span class="checkmark"></span>';
@@ -55,37 +34,28 @@ const listItem = function (item) {
 }
 
 // set item checked property when checklist clicked
-const toggleDone = function (key) {
+const toggleDone = function (key, text) {
   // find index
-  const index = listItems.findIndex(item => item.id === Number(key));
+  // const index = listItems.findIndex(item => item.id === Number(key));
 
-  // set checked
-  listItems[index].checked = !listItems[index].checked;
-
-  // set class for checked item
-  const item = document.querySelector(`[data-key='${key}']`);
-  if (listItems[index].checked) {
-    item.classList.add('checked');
-  } else {
-    item.classList.remove('checked');
+  // prepare data
+  let data = {
+    text,
+    checked: true,
+    id: Number(key)
   }
 
-  // setTimeout(() => {
-  return new Promise((resolve, reject) => {
-    resolve(listItems);
-  });
-  // }, 1000);
+  // update data
+  updateObjectStore('myLists', data);
 }
 
 // function / delete list item
 const deleteItem = function (key) {
   // find index
-  const index = listItems.findIndex(item => item.id === Number(key));
+  // const index = listItems.findIndex(item => item.id === Number(key));
 
   // remove array item by their index
-  if (index > -1) {
-    listItems.splice(index, 1);
-  }
+  deleteObjectStore('myLists', key);
 
 }
 
@@ -93,13 +63,15 @@ const deleteItem = function (key) {
 const clickCheck = function (event) {
   if (event.target.parentElement.classList.contains('checklist')) {
     let itemKey = event.target.parentElement.parentElement.dataset.key;
+    let itemText = event.target.parentElement.parentElement.dataset.text;
     // console.log(itemKey);
-    toggleDone(itemKey).then(result => {
-      // console.log(result);
-
+    toggleDone(itemKey, itemText);
+    // console.log(result);
+    loadObjectStore('myLists', (result) => {
       listsActive.innerHTML = renderLists(result);
       listsNonActive.innerHTML = renderLists(result, true);
     });
+
   }
 }
 
@@ -110,11 +82,13 @@ const clickCross = function (event) {
       let itemKey = event.target.parentElement.dataset.key;
 
       // delete item from lists
-      deleteItem(itemKey);
+      deleteItem(Number(itemKey));
 
       // re-render list items
-      listsActive.innerHTML = renderLists(listItems);
-      listsNonActive.innerHTML = renderLists(listItems, true);
+      loadObjectStore('myLists', (result) => {
+        listsActive.innerHTML = renderLists(result);
+        listsNonActive.innerHTML = renderLists(result, true);
+      });
     }
   }
 }
@@ -180,16 +154,16 @@ function checkReference(dom, callback) {
   }
 }
 
-// run after loading dom
-(function () {
-  // check if component reference exist
-  checkReference(listsNonActive, () => {
-    listsActive.innerHTML = renderLists(listItems);
-  });
+// // run after loading dom
+// (function () {
+//   // check if component reference exist
+//   checkReference(listsNonActive, () => {
+//     listsActive.innerHTML = renderLists(listItems);
+//   });
 
-  // check if component reference exist
-  checkReference(listsNonActive, () => {
-    listsNonActive.innerHTML = renderLists(listItems, true);
-  });
+//   // check if component reference exist
+//   checkReference(listsNonActive, () => {
+//     listsNonActive.innerHTML = renderLists(listItems, true);
+//   });
 
-})();
+// })();

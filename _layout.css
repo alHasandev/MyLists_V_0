@@ -99,6 +99,10 @@
 
 /* -- -- Smallest size screen */
 @media only screen and (max-width: 320px) {
+  .container {
+    padding: 0;
+  }
+
   .row {
     grid-gap: 5px;
   }
