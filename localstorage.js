@@ -16,17 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // init indexedDB
   initDB();
 
-  checkReference(listsActive, () => {
-    // wait until indexed DB initiated
-    setTimeout(() => {
-      loadObjectStore('myLists', (result) => {
-        // console.log(result);
-        listsActive.innerHTML = renderLists(result);
-        listsNonActive.innerHTML = renderLists(result, true);
-      })
+  // checkReference(listsActive, () => {
+  //   // wait until indexed DB initiated
+  //   setTimeout(() => {
+  //     loadObjectStore('myLists', (result) => {
+  //       // console.log(result);
+  //       listsActive.innerHTML = renderLists(result);
+  //       listsNonActive.innerHTML = renderLists(result, true);
+  //     })
 
-    }, 2000);
-  });
+  //   }, 2000);
+  // });
 });
 
 // function / init indexedDB
