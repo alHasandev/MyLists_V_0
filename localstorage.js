@@ -77,6 +77,31 @@ function createObjectStore(db) {
   console.log('Database setup complete');
 }
 
+// function / get certain object store
+function loadObjectStoreAt(storeName, id, callback) {
+  // let result;
+  // create object transaction
+  let trans = db.transaction([storeName], 'readonly');
+
+  // request certain data
+  let objStore = trans.objectStore(storeName);
+
+  let getRequest = objStore.get(id);
+
+  // handle on error
+  getRequest.onerror = function (e) {
+    console.log('cannot get data');
+    console.error(e);
+  }
+
+  // handle on success
+  getRequest.onsuccess = function (e) {
+    console.log('succeed get data with id ' + id);
+    callback(e.target.result);
+  }
+
+}
+
 // get data from object store
 function loadObjectStore(storeName, callback) {
   // let result = [];
@@ -95,7 +120,7 @@ function loadObjectStore(storeName, callback) {
   // handle on success 
   reqData.onsuccess = (e) => {
     console.log('succeed get all data');
-    storedData = e.target.result;
+    // storedData = e.target.result;
     callback(e.target.result);
   }
 }

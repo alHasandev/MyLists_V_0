@@ -34,19 +34,33 @@ const listItem = function (item) {
 }
 
 // set item checked property when checklist clicked
-const toggleDone = function (key, text) {
-  // find index
-  // const index = listItems.findIndex(item => item.id === Number(key));
+const toggleDone = function (key, text, callback) {
 
-  // prepare data
-  let data = {
-    text,
-    checked: true,
-    id: Number(key)
-  }
+  key = Number(key);
 
-  // update data
-  updateObjectStore('myLists', data);
+  // get data based on id
+  loadObjectStoreAt('myLists', key, function (result) {
+    // check if item checked true / false
+    if (result.checked === false) {
+      // prepare data
+      data = {
+        text,
+        checked: true,
+        id: key
+      }
+    } else {
+      // prepare data
+      data = {
+        text,
+        checked: false,
+        id: key
+      }
+    }
+    // update data
+    updateObjectStore('myLists', data);
+    callback();
+  });
+
 }
 
 // function / delete list item
@@ -65,12 +79,14 @@ const clickCheck = function (event) {
     let itemKey = event.target.parentElement.parentElement.dataset.key;
     let itemText = event.target.parentElement.parentElement.dataset.text;
     // console.log(itemKey);
-    toggleDone(itemKey, itemText);
-    // console.log(result);
-    loadObjectStore('myLists', (result) => {
-      listsActive.innerHTML = renderLists(result);
-      listsNonActive.innerHTML = renderLists(result, true);
+    toggleDone(itemKey, itemText, () => {
+      loadObjectStore('myLists', (result) => {
+        listsActive.innerHTML = renderLists(result);
+        listsNonActive.innerHTML = renderLists(result, true);
+      });
     });
+    // console.log(itemKey);
+
 
   }
 }
@@ -167,3 +183,20 @@ function checkReference(dom, callback) {
 //   });
 
 // })();
+
+let promise = new Promise((resolve, reject) => {
+  resolve('resolve');
+  reject('reject');
+});
+
+let getPromise = function (e) {
+  return new Promise((resolve, reject) => {
+    if (e) {
+      resolve('succeed');
+    } else {
+      reject('failed');
+    }
+  })
+}
+
+getPromise(true).then((e) => console.log(e));
