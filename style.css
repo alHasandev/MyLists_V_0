@@ -116,4 +116,12 @@
 
 /* -- modal / avatar list / end */
 
+/* navbar / link */
+.nav-link {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* navbar / link / end */
+
 /* custom style / end */

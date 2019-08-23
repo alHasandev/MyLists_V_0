@@ -1,19 +1,20 @@
+// prepare DOM Element References
+// const localName = document.getElementById('fullname');
+const localUser = document.getElementById('localuser');
+const registerLink = document.getElementById('register-link');
+
 // prepare variables
-let db;
-let dbVersion = 1;
-let dbReady = false;
 let imageName = getLocal('imageName', 'user-grey.png');
 let fullName = getLocal('fullName', 'Your Name');
-let userName = getLocal('userName', '@your_name');
+let userName = getLocal('userName', 'your_name');
 
 //  wait until dom loaded 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM Content Loaded');
 
   // load User data
-  loadUserImage(imageName);
-  loadUserData('#fullname', fullName);
-  loadUserData('#username', '@' + userName);
+  loadUserData('#localname', fullName);
+  loadUserData('#localuser', '@' + userName);
 
   // prepare Html Dom References
   const addImage = document.getElementById('add-image');
@@ -32,13 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     previewImage.addEventListener('click', doImageTest);
   });
 
-  initDB();
+  // initDB();
 
   // listen to event
   // event: submit / form profile
   listenEvent('submit', '#form-profile', (event) => {
     // redirect to page: edit profile
-    window.location.href = 'register.html';
+    window.location.href = 'profile-edit.html';
   });
 
   // event: click / choose avatar image
@@ -66,6 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // redirect to page profile
     window.location.href = 'profile.html';
   });
+
+
+
+  checkReference(registerLink, () => {
+    // check if user is registered
+    if (localStorage.userName === undefined) {
+      localUser.classList.add('d-none');
+      document.querySelector('.img-thumb').classList.add('d-none');
+      registerLink.classList.remove('d-none');
+    } else {
+      localUser.classList.remove('d-none');
+      loadUserImage(imageName);
+      registerLink.classList.add('d-none');
+    }
+  });
+
 });
 
 function initDB() {
@@ -171,14 +188,21 @@ function getLocal(item, defaultName) {
 
 // function / load User Image
 function loadUserImage(imageName) {
-  const path = './assets/images/User_Avatars/';
-  document.getElementById('avatar').src = path + imageName;
-  console.log('user image changed');
+  const avatar = document.getElementById('avatar');
+  checkReference(avatar, () => {
+    const path = './assets/images/User_Avatars/';
+    avatar.src = path + imageName;
+    console.log('user image changed');
+  });
 }
 
 // function / load user Data
 function loadUserData(selector, value) {
-  document.querySelector(selector).innerHTML = value;
+  const domUser = document.querySelector(selector);
+  checkReference(domUser, () => {
+    domUser.innerHTML = value;
+    console.log('user data : ' + selector + ' changed');
+  });
 }
 
 // function / save profile to local storage

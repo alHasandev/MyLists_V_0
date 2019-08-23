@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // wait until indexed DB initiated
     setTimeout(() => {
       loadObjectStore('myLists', (result) => {
-        console.log(result);
+        // console.log(result);
         listsActive.innerHTML = renderLists(result);
         listsNonActive.innerHTML = renderLists(result, true);
       })

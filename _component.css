@@ -103,6 +103,17 @@ hr {
 
 /* text && heading / end */
 
+/* image style */
+.img-thumb {
+  max-width: 30px;
+  max-height: 30px;
+  border: 2px solid #37474F;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* image style / end */
+
 /* group style */
 
 .lists .list-item {

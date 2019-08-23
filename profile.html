@@ -30,10 +30,10 @@
           <div class="row">
             <div class="col col-md-9">
               <div class="form-group">
-                <h3 class="title" id="fullname">Your Name</h3>
+                <h3 class="title" id="localname">Your Name</h3>
               </div>
               <div class="form-group">
-                <h4 class="sub-title" id="username">@your_name</h4>
+                <h4 class="sub-title" id="localuser">@your_name</h4>
               </div>
             </div>
           </div>
@@ -57,6 +57,13 @@
   <!-- script & library javascript -->
   <script src="app.js"></script>
   <script src="profile.js"></script>
+  <script>
+    // wait until DOM Loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // load image
+      loadUserImage(imageName);
+    })
+  </script>
 </body>
 
 </html>
