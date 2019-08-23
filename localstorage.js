@@ -120,7 +120,7 @@ function loadObjectStore(storeName, callback) {
   // handle on success 
   reqData.onsuccess = (e) => {
     console.log('succeed get all data');
-    // storedData = e.target.result;
+    storedData = e.target.result;
     callback(e.target.result);
   }
 }
