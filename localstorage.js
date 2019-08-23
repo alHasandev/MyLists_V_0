@@ -16,17 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // init indexedDB
   initDB();
 
-  // checkReference(listsActive, () => {
-  //   // wait until indexed DB initiated
-  //   setTimeout(() => {
-  //     loadObjectStore('myLists', (result) => {
-  //       // console.log(result);
-  //       listsActive.innerHTML = renderLists(result);
-  //       listsNonActive.innerHTML = renderLists(result, true);
-  //     })
+  checkReference(listsActive, () => {
+    // wait until indexed DB initiated
+    setTimeout(() => {
+      loadObjectStore('myLists', (result) => {
+        // console.log(result);
+        listsActive.innerHTML = renderLists(result);
+        listsNonActive.innerHTML = renderLists(result, true);
+      })
 
-  //   }, 2000);
-  // });
+    }, 2000);
+  });
 });
 
 // function / init indexedDB
@@ -42,37 +42,44 @@ function initDB() {
   // handle success request
   request.onsuccess = function (e) {
     db = e.target.result;
+
+    // check db version and create objectStore if needed
     console.log('db opened');
   }
 
   // send request
   request.onupgradeneeded = function (e) {
-    let db = e.target.result;
+    let db = e.target.result
 
     // create object store
-    let objectStore = db.createObjectStore('myLists', {
-      keyPath: 'id',
-      autoIncrement: true
-    });
-
-    // Define what data items the objectStore will contain
-    objectStore.createIndex('text', 'text', {
-      unique: false
-    });
-    objectStore.createIndex('checked', 'checked', {
-      unique: false
-    });
-
-    // set db to ready
-    dbReady = true;
-
-    console.log('Database setup complete');
+    createObjectStore(db);
+    // console.log('onupgradeneeded invoked');
   }
+}
+
+function createObjectStore(db) {
+  let objectStore = db.createObjectStore('myLists', {
+    keyPath: 'id',
+    autoIncrement: true
+  });
+
+  // Define what data items the objectStore will contain
+  objectStore.createIndex('text', 'text', {
+    unique: false
+  });
+  objectStore.createIndex('checked', 'checked', {
+    unique: false
+  });
+
+  // set db to ready
+  dbReady = true;
+
+  console.log('Database setup complete');
 }
 
 // get data from object store
 function loadObjectStore(storeName, callback) {
-  let result = [];
+  // let result = [];
   // create  object transaction
   let trans = db.transaction([storeName], 'readonly');
 
