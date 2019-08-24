@@ -54,7 +54,7 @@
       <h3 class="title">Choose your avatars</h3>
     </div>
     <div class="modal-body">
-      <div class="grid">
+      <div class="grid" id="avatar-container">
         <div class="grid-item border border-dark rounded">
           <img src="./assets/images/User_Avatars/avatar-man-1.png" alt="" class="avatar">
         </div>
@@ -65,25 +65,15 @@
           <img src="./assets/images/User_Avatars/avatar-man-3.png" alt="" class="avatar">
         </div>
         <div class="grid-item border border-dark rounded">
-          <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="" class="avatar">
-        </div>
-        <div class="grid-item border border-dark rounded" id="new-image">
-          <div class="image-collapse">
-            <img id="image-test" alt="">
-          </div>
-          <!-- this will filled with javascript -->
-        </div>
-        <div class="grid-item">
-          <div class="files">
-            <input type="file" class="input-file" id="add-image" capture>
-            <label for="add-image" class="file-box rounded">Add new images</label>
-          </div>
+          <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="" class="avatar" id="dummy-dom">
         </div>
       </div>
     </div>
     <div class="modal-footer">
       <div class="footer-left">Left</div>
-      <div class="footer-center">Center</div>
+      <div class="footer-center">
+        <!-- <button class="btn" onclick="loadImages('server/image.php?path=true')">Load Image</button> -->
+      </div>
       <div class="footer-right">
         <button class="btn" onclick="closeModal('avatar-list')">Cancel</button>
       </div>
@@ -94,6 +84,7 @@
   <!-- script & library javascript -->
   <script src="app.js"></script>
   <script src="profile.js"></script>
+  <script src="load-images.js"></script>
 </body>
 
 </html>

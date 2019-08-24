@@ -69,23 +69,20 @@
         <div class="grid-item border border-dark rounded">
           <img src="./assets/images/User_Avatars/avatar-man-4.png" alt="" class="avatar">
         </div>
-        <div class="grid-item border border-dark rounded" id="new-image">
-          <div class="image-collapse">
-            <img id="image-test" alt="">
-          </div>
-          <!-- this will filled with javascript -->
-        </div>
-        <div class="grid-item">
+
+        <!-- <div class="grid-item">
           <div class="files">
             <input type="file" class="input-file" id="add-image" capture>
             <label for="add-image" class="file-box rounded">Add new images</label>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="modal-footer">
       <div class="footer-left">Left</div>
-      <div class="footer-center">Center</div>
+      <div class="footer-center">
+        <button class="btn" onclick="loadImages('server/image.php')">Load Image</button>
+      </div>
       <div class="footer-right">
         <button class="btn" onclick="closeModal('avatar-list')">Cancel</button>
       </div>
@@ -96,6 +93,7 @@
   <!-- script & library javascript -->
   <script src="app.js"></script>
   <script src="profile.js"></script>
+  <script src="load-images.js"></script>
   <script>
     // wait until DOM loaded
     document.addEventListener('DOMContentLoaded', () => {
@@ -129,6 +127,19 @@
         window.location.href = 'profile.html';
       });
     });
+
+    function loadImages(url) {
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(JSON.parse(this.responseText));
+        }
+      }
+
+      xhttp.open('GET', url, true);
+      xhttp.send();
+    }
   </script>
 </body>
 
