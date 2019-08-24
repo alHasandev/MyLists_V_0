@@ -6,14 +6,14 @@ function loadImages(url) {
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      // let imgBox = '';
-      // let imgLists = JSON.parse(this.responseText);
-      // imgLists.forEach(img => {
-      //   imgBox += getHtmlImg(img);
-      // });
+      let imgBox = '';
+      let imgLists = JSON.parse(this.responseText);
+      imgLists.forEach(img => {
+        imgBox += getHtmlImg(img);
+      });
 
-      // avatarContainer.innerHTML = imgBox;
-      console.log(this.responseText);
+      avatarContainer.innerHTML = imgBox;
+      // console.log(this.responseText);
     }
   }
 
